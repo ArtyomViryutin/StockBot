@@ -2,10 +2,10 @@ import telebot as tl
 from telebot.types import Message, CallbackQuery
 import stock_api
 import utils
+import os
 
 
-
-bot = tl.TeleBot(TOKEN)
+bot = tl.TeleBot(os.environ.get('TOKEN'))
 
 
 @bot.message_handler(commands=['start'])
