@@ -4,8 +4,6 @@ import stock_api
 import utils
 
 
-TOKEN = '1717009683:AAGuWYGHA-8GNus9PuqcCvZoSVvdFFnB_IA'
-
 
 bot = tl.TeleBot(TOKEN)
 
