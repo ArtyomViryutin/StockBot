@@ -11,7 +11,7 @@ bot = tl.TeleBot(os.environ.get('TOKEN'), parse_mode='html')
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message: Message):
-    bot.send_message(message.chat.id, 'Greeting! I can show you stock prices.\n'
+    bot.send_message(message.chat.id, 'Greeting! My name is Alex and I can show you stock prices.\n'
                                       'To get the stock prices press /price and choose a company you are interested '
                                       'in.\n '
                                       'To get help press /help')
@@ -22,21 +22,19 @@ def send_help(message: Message):
     keyboard = tl.types.InlineKeyboardMarkup()
     keyboard.add(
         tl.types.InlineKeyboardButton(
-            'Message to developer', url='telegram.me/Artyom181'
+            'Message to developer', url='telegram.me/BotFather'
         )
     )
     bot.send_message(message.chat.id,
-                     '<ol>'
-                     '<li> Press /price. </li>'
-                     '</li>Choose a company you are interested in.</li>'
-                     '</ol>', reply_markup=keyboard)
+                     '1) Press /price.\n\n'
+                     '2) Choose a company you are interested in.', reply_markup=keyboard)
 
 
 @bot.message_handler(commands=['price'])
 def share_price_command(message):
     keyboard = utils.generate_keyboard()
     bot.send_message(message.chat.id,
-                     'Please, choose a company you are interested in.', reply_markup=keyboard)
+                     'Please, choose a company.', reply_markup=keyboard)
 
 
 @bot.callback_query_handler(func=lambda query: query.data.startswith('$$'))
