@@ -1,11 +1,12 @@
-import telebot as tl
-from telebot.types import Message, CallbackQuery
-import stock_api
-import utils
 import os
 
+import telebot as tl
+from telebot.types import CallbackQuery, Message
 
-bot = tl.TeleBot(os.environ.get('TOKEN'))
+import stock_api
+import utils
+
+bot = tl.TeleBot(os.environ.get('TOKEN'), parse_mode='html')
 
 
 @bot.message_handler(commands=['start'])
@@ -25,8 +26,10 @@ def send_help(message: Message):
         )
     )
     bot.send_message(message.chat.id,
-                     '1) Press /price.\n'
-                     '2) Choose a company you are interested in.\n', reply_markup=keyboard)
+                     '<ol>'
+                     '<li> Press /price. </li>'
+                     '</li>Choose a company you are interested in.</li>'
+                     '</ol>', reply_markup=keyboard)
 
 
 @bot.message_handler(commands=['price'])

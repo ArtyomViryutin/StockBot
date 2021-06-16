@@ -1,6 +1,7 @@
-import telebot as tl
 from io import BytesIO
+
 import matplotlib.pyplot as plt
+import telebot as tl
 
 default_companies = (('Microsoft', 'MSFT'), ('Apple', 'AAPL'), ('Amazon', 'AMZN'),
                      ('Google', 'GOOG'), ('Facebook', 'FB'), ('Tesla', 'TSLA'))
@@ -24,3 +25,8 @@ def generate_keyboard(buttons=default_companies):
         keyboard.add(tl.types.InlineKeyboardButton(key, callback_data='$$' + value))
     return keyboard
 
+
+def get_current_trend_emoji(current_price, yesterday_price):
+    up = u'\U00002197'
+    down = u'\U00002198'
+    return up if current_price - yesterday_price > 0 else down
